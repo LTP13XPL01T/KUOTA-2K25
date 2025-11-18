@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAXX-KUOTA v2025 — WORLD UNLIMITED STORE</title>
+    <meta name="description" content="Toko Kuota Terlengkap Indonesia & Internasional — Harga Mulai 150K — 100+ Paket — Auto Upload Bukti">
+    <meta name="theme-color" content="#ff00ff">
+    
+    <!-- FONT PREMIUM -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Rajdhani:wght@700&family=Exo+2:wght@900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --purple: #ff00ff;
+            --cyan: #00ffff;
+            --yellow: #ffff00;
+            --black: #000000;
+            --dark: #0f0020;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: var(--black);
+            color: #ffffff;
+            font-family: 'Rajdhani', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* LOADING SCREEN GILA */
+        #loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .loader {
+            width: 180px;
+            height: 180px;
+            border: 12px solid var(--purple);
+            border-top: 12px solid var(--cyan);
+            border-radius: 50%;
+            animation: spin 1.2s linear infinite;
+            margin-bottom: 40px;
+        }
+        
+        .loading-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 48px;
+            background: linear-gradient(45deg, var(--purple), var(--cyan), var(--yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 40px var(--purple);
+            animation: pulse 2s infinite;
+        }
+        
+        .loading-sub {
+            font-size: 24px;
+            color: var(--cyan);
+            margin-top: 20px;
+            text-shadow: 0 0 20px var(--cyan);
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+        
+        /* MAIN CONTENT */
+        #main {
+            display: none;
+        }
+        
+        .header {
+            background: linear-gradient(90deg, var(--purple), var(--cyan));
+            color: #000;
+            padding: 25px;
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 36px;
+            letter-spacing: 8px;
+            box-shadow: 0 0 50px var(--purple);
+            text-shadow: 0 0 20px #fff;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+        
+        /* PEMBAYARAN */
+        .payment-box {
+            background: rgba(20, 0, 40, 0.95);
+            border: 4px dashed var(--purple);
+            border-radius: 30px;
+            padding: 35px;
+            margin: 40px 0;
+            text-align: center;
+            box-shadow: 0 0 60px rgba(255, 0, 255, 0.6);
+        }
+        
+        .dana-text {
+            font-size: 28px;
+            color: var(--cyan);
+            margin: 15px 0;
+        }
+        
+        .nomor-dana {
+            font-size: 48px;
+            font-weight: bold;
+            color: var(--yellow);
+            background: #000;
+            padding: 20px;
+            border-radius: 20px;
+            margin: 20px 0;
+            letter-spacing: 6px;
+            text-shadow: 0 0 30px var(--yellow);
+        }
+        
+        .upload-btn {
+            background: linear-gradient(45deg, var(--purple), var(--cyan));
+            color: #000;
+            font-weight: bold;
+            font-size: 24px;
+            padding: 20px 60px;
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            margin: 30px 0;
+            box-shadow: 0 0 50px var(--purple);
+            transition: all 0.4s;
+        }
+        
+        .upload-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 100px var(--cyan);
+        }
+        
+        .status {
+            margin-top: 20px;
+            font-size: 22px;
+            color: #00ff00;
+            min-height: 50px;
+        }
+        
+        /* PAKET GRID */
+        .paket-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .paket {
+            background: rgba(40, 0, 80, 0.95);
+            border: 3px solid var(--purple);
+            border-radius: 25px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 0 40px rgba(255, 0, 255, 0.5);
+            transition: all 0.5s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .paket::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine 8s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        
+        .paket:hover {
+            transform: translateY(-20px) scale(1.05);
+            box-shadow: 0 0 80px var(--purple), 0 0 120px var(--cyan);
+            border-color: var(--cyan);
+        }
+        
+        .paket-head {
+            background: linear-gradient(45deg, var(--purple), var(--cyan));
+            color: #000;
+            padding: 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .nama-paket {
+            font-size: 26px;
+            color: var(--cyan);
+            margin: 15px 0;
+            text-shadow: 0 0 20px var(--cyan);
+        }
+        
+        .detail-paket {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 15px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            color: #e0e0ff;
+        }
+        
+        .harga-paket {
+            font-size: 38px;
+            font-weight: bold;
+            color: var(--yellow);
+            margin: 25px 0;
+            text-shadow: 0 0 30px var(--yellow);
+        }
+        
+        .beli-btn {
+            background: linear-gradient(45deg, var(--purple), var(--cyan));
+            color: #000;
+            font-weight: bold;
+            font-size: 24px;
+            padding: 18px 50px;
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.4s;
+            box-shadow: 0 0 40px var(--purple);
+        }
+        
+        .beli-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 80px var(--cyan);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--purple);
+            font-size: 20px;
+            text-shadow: 0 0 30px var(--purple);
+        }
+    </style>
+</head>
+<body>
+
+<!-- LOADING SCREEN -->
+<div id="loading">
+    <div class="loader"></div>
+    <div class="loading-text">NAXX-KUOTA V2025</div>
+    <div class="loading-sub">WORLD DOMINATION LOADING...</div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="main">
+
+    <div class="header">
+        NAXX-KUOTA v2025
+    </div>
+
+    <div class="container">
+
+        <!-- PEMBAYARAN -->
+        <div class="payment-box">
+            <h2 style="font-size: 36px; color: var(--cyan); margin-bottom: 20px;">PEMBAYARAN VIA E-WALLET</h2>
+            <div class="dana-text">DANA</div>
+            <div class="nomor-dana">0838-6125-1898</div>
+            <div class="dana-text">Atas Nama: <strong>MISRAN</strong></div>
+            <p style="margin: 30px 0; font-size: 20px; color: var(--yellow);">
+                Transfer sesuai harga paket → Upload bukti transfer di bawah<br>
+                Otomatis masuk ke admin dalam hitungan detik!
+            </p>
+            <input type="file" id="buktiTransfer" accept="image/*" style="display: none;">
+            <button class="upload-btn" onclick="document.getElementById('buktiTransfer').click()">
+                UPLOAD BUKTI TRANSFER
+            </button>
+            <div id="status" class="status"></div>
+        </div>
+
+        <!-- SEMUA PAKET — HARGA MINIMAL 150.000 -->
+        <div class="paket-grid">
+
+            <div class="paket">
+                <div class="paket-head">TELKOMSEL PREMIUM</div>
+                <div class="nama-paket">100GB + Malam Unlimited</div>
+                <div class="detail-paket">Full Speed 24 Jam • 30 Hari</div>
+                <div class="harga-paket">Rp 150.000</div>
+                <button class="beli-btn" onclick="pilihPaket(this)">BELI SEKARANG</button>
+            </div>
+
+            <div class="paket">
+                <div class="paket-head">INDOSAT OOREDOO</div>
+                <div class="nama-paket">150GB 5G Tanpa FUP</div>
+                <div class="detail-paket">Full Speed • All Area • 30 Hari</div>
+                <div class="harga-paket">Rp 180.000</div>
+                <button class="beli-btn" onclick="pilihPaket(this)">BELI SEKARANG</button>
+            </div>
+
+            <div class="paket">
+                <div class="paket-head">XL AXIATA</div>
+                <div class="nama-paket">200GB + Unlimited Apps</div>
+                <div class="detail-paket">No Limit • 30 Hari</div>
+                <div class="harga-paket">Rp 220.000</div>
+                <button class="beli-btn" onclick="pilihPaket(this)">BELI</button>
+            </div>
+
+            <div class="paket">
+                <div class="paket-head">SOSMED UNLIMITED</div>
+                <div class="nama-paket">TikTok + Instagram + YouTube</div>
+                <div class="detail-paket">All Country • No Block • 30 Hari</div>
+                <div class="harga-paket">Rp 175.000</div>
+                <button class="beli-btn" onclick="pilihPaket(this)">BELI</button>
+            </div>
+
+            <div class="paket">
+                <div class="paket-head">WORLD ROAMING</div>
+                <div class="nama-paket">100GB GAMIMG All COUNTRY</div>
+                <div class="detail-paket">50+ Negara • 30 Hari</div>
+                <div class="harga-paket">Rp 300</div>
+                <button class="beli-btn" onclick="pilihPaket(this)">BELI</button>
+            </div>
+
+            <div class="paket">
+                <div class="paket-head">LIFETIME EXCLUSIVE</div>
+                <div class="nama-paket">Unlimited Selamanya</div>
+                <div class="detail-paket">All Operator • No FUP • Seumur Hidup</div>
+                <div class="harga-paket">Rp 550.000</div>
+                <button class="beli-btn" onclick="pilihPaket(this)">BELI SEKARANG</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        © 2025 NAXX-KUOTA — BY CYBER LUTPI RAMADHAN<br>
+        <span style="color: var(--yellow); font-size: 24px;">GASPOL SAMPE AKHIR ZAMAN BRO!</span>
+    </footer>
+
+</div>
+
+<script>
+// LOADING SCREEN HILANG SETELAH 3.5 DETIK
+setTimeout(function() {
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('main').style.display = 'block';
+}, 3500);
+
+// AUTO UPLOAD BUKTI KE TELEGRAM (TOKEN & CHAT_ID AMAN DISEMBUNYIKAN)
+document.getElementById('buktiTransfer').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function() {
+        const token = atob("ODMxMDY2MzIzNjpBQUg3SVdDR1p5dE90cFBub25OZEVDQWNzZ2l6cGQ5S0xayA==");
+        const chat_id = atob("NzQzMTE0OTA5Mw==");
+
+        const caption = `BUKTI TRANSFER MASUK!\nWaktu: ${new Date().toLocaleString('id-ID')}\nUser: ${navigator.userAgent.substring(0, 100)}...`;
+
+        fetch(`https://api.telegram.org/bot${token}/sendPhoto`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                chat_id: chat_id,
+                photo: reader.result,
+                caption: caption
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.ok) {
+                document.getElementById('status').innerHTML = "BUKTI BERHASIL TERKIRIM!<br>ADMIN AKAN PROSES DALAM 1-5 MENIT";
+            } else {
+                document.getElementById('status').innerHTML = "GAGAL KIRIM. COBA LAGI!";
+            }
+        })
+        .catch(() => {
+            document.getElementById('status').innerHTML = "KONEKSI BERMASALAH. COBA LAGI";
+        });
+    };
+    reader.readAsDataURL(file);
+});
+
+// FUNGSI BELI PAKET
+function pilihPaket(button) {
+    const paket = button.parentElement;
+    const nama = paket.querySelector('.nama-paket').innerText;
+    const harga = paket.querySelector('.harga-paket').innerText;
+
+    alert(
+        `PAKET DIPILIH:\n${nama}\n${harga}\n\n` +
+        `Silakan transfer ke:\nDANA: 0838-6125-1898\nAtas Nama: MISRAN\n\n` +
+        `Setelah transfer, upload bukti transfer di atas!\nAdmin akan proses dalam 1-5 menit.`
+    );
+}
+</script>
+
+</body>
+</html>
