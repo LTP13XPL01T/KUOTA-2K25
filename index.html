@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tools Tembak Paket Data - MISRAN STORE</title>
+    <title>Tools Tembak Paket Data Premium - MISRAN STORE</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -219,8 +219,8 @@
 <body>
 
 <header>
-    <h1>⚡ Auto Tembak Kuota</h1>
-    <p>Tools Pembelian Paket Data All Operator (Simulasi)</p>
+    <h1>⚡ Auto Tembak Paket Sultan</h1>
+    <p>Tools Pembelian Paket Data Premium (Simulasi)</p>
 </header>
 
 <div class="container">
@@ -279,41 +279,38 @@
 </div>
 
 <script>
+    // DATA PAKET DIPERBARUI (HARGA 250K - 650K)
     const RAW_DATA = {
         "📱 TELKOMSEL": [
-            {"name": "🔥 TELKOMSEL 10GB 7 HARI", "price": 15000, "quota": "10GB", "duration": "7 Hari", "code": "TS10GB"},
-            {"name": "🔥 TELKOMSEL 15GB 15 HARI", "price": 20000, "quota": "15GB", "duration": "15 Hari", "code": "TS15GB"},
-            {"name": "🔥 TELKOMSEL 25GB 30 HARI", "price": 35000, "quota": "25GB", "duration": "30 Hari", "code": "TS25GB"},
-            {"name": "🔥 TELKOMSEL 35GB 30 HARI", "price": 45000, "quota": "35GB", "duration": "30 Hari", "code": "TS35GB"},
-            {"name": "🔥 TELKOMSEL 50GB 30 HARI", "price": 60000, "quota": "50GB", "duration": "30 Hari", "code": "TS50GB"},
-            {"name": "🔥 TELKOMSEL UNLIMITED 30 HARI", "price": 200000, "quota": "Unlimited FUP", "duration": "30 Hari", "code": "TSUNLIMITED"}
+            {"name": "👑 TSEL ORBIT 100GB", "price": 250000, "quota": "100GB", "duration": "30 Hari", "code": "TSORBIT100"},
+            {"name": "👑 TSEL SULTAN 150GB", "price": 350000, "quota": "150GB (All Net)", "duration": "30 Hari", "code": "TSSULTAN150"},
+            {"name": "👑 TSEL PRIORITY 250GB", "price": 500000, "quota": "250GB (VIP)", "duration": "60 Hari", "code": "TSPRIO250"},
+            {"name": "👑 TSEL UNLIMITED MAX", "price": 650000, "quota": "UNLIMITED NO FUP", "duration": "90 Hari", "code": "TSUNLI90"}
         ],
         "📡 INDOSAT": [
-            {"name": "💜 INDOSAT 10GB 7 HARI", "price": 14000, "quota": "10GB", "duration": "7 Hari", "code": "IS10GB"},
-            {"name": "💜 INDOSAT 15GB 15 HARI", "price": 19000, "quota": "15GB", "duration": "15 Hari", "code": "IS15GB"},
-            {"name": "💜 INDOSAT 25GB 30 HARI", "price": 33000, "quota": "25GB", "duration": "30 Hari", "code": "IS25GB"},
-            {"name": "💜 INDOSAT 50GB 30 HARI", "price": 58000, "quota": "50GB", "duration": "30 Hari", "code": "IS50GB"}
+            {"name": "💎 ISAT FREEDOM 100GB", "price": 250000, "quota": "100GB", "duration": "30 Hari", "code": "IS100GB"},
+            {"name": "💎 ISAT POSTPAID 200GB", "price": 400000, "quota": "200GB + Call", "duration": "30 Hari", "code": "IS200GB"},
+            {"name": "💎 ISAT SULTAN 350GB", "price": 550000, "quota": "350GB", "duration": "60 Hari", "code": "IS350GB"},
+            {"name": "💎 ISAT UNLIMITED JUMBO", "price": 650000, "quota": "UNLIMITED + ROAMING", "duration": "90 Hari", "code": "ISUNLI90"}
         ],
         "🔵 XL": [
-            {"name": "🔵 XL 10GB 7 HARI", "price": 13000, "quota": "10GB", "duration": "7 Hari", "code": "XL10GB"},
-            {"name": "🔵 XL 15GB 15 HARI", "price": 18000, "quota": "15GB", "duration": "15 Hari", "code": "XL15GB"},
-            {"name": "🔵 XL 25GB 30 HARI", "price": 32000, "quota": "25GB", "duration": "30 Hari", "code": "XL25GB"},
-            {"name": "🔵 XL 50GB 30 HARI", "price": 57000, "quota": "50GB", "duration": "30 Hari", "code": "XL50GB"}
+            {"name": "💠 XL AKRAB 150GB", "price": 280000, "quota": "150GB (Bisa Bagi)", "duration": "30 Hari", "code": "XLAKRAB150"},
+            {"name": "💠 XL PRIO GOLD 200GB", "price": 420000, "quota": "200GB", "duration": "30 Hari", "code": "XLPRIO200"},
+            {"name": "💠 XL PRIO PLATINUM", "price": 600000, "quota": "UNLIMITED DATA", "duration": "30 Hari", "code": "XLPRIOPLAT"}
         ],
         "🟢 THREE": [
-            {"name": "🟢 THREE 10GB 7 HARI", "price": 12000, "quota": "10GB - STOCK HABIS", "duration": "7 Hari", "code": "3R10GB"},
-            {"name": "🟢 THREE 25GB 30 HARI", "price": 31000, "quota": "25GB - STOCK HABIS", "duration": "30 Hari", "code": "3R25GB"},
-            {"name": "🟢 THREE 50GB 30 HARI", "price": 56000, "quota": "50GB", "duration": "30 Hari", "code": "3R50GB"}
+            {"name": "☘️ TRI HOME 120GB", "price": 250000, "quota": "120GB - STOCK HABIS", "duration": "30 Hari", "code": "TRHOME120"},
+            {"name": "☘️ TRI ELITE 200GB", "price": 380000, "quota": "200GB", "duration": "60 Hari", "code": "TRELITE200"},
+            {"name": "☘️ TRI UNLIMITED WORLD", "price": 580000, "quota": "UNLIMITED", "duration": "90 Hari", "code": "TRUNLI90"}
         ],
         "🟣 SMARTFREN": [
-            {"name": "🟣 SMARTFREN 10GB 7 HARI", "price": 11000, "quota": "10GB", "duration": "7 Hari", "code": "SF10GB"},
-            {"name": "🟣 SMARTFREN 15GB 15 HARI", "price": 16000, "quota": "15GB", "duration": "15 Hari", "code": "SF15GB"},
-            {"name": "🟣 SMARTFREN 25GB 30 HARI", "price": 30000, "quota": "25GB", "duration": "30 Hari", "code": "SF25GB"}
+            {"name": "🚀 SMARTFREN PRO 150GB", "price": 275000, "quota": "150GB", "duration": "30 Hari", "code": "SFPRO150"},
+            {"name": "🚀 SMARTFREN ELITE 300GB", "price": 450000, "quota": "300GB", "duration": "90 Hari", "code": "SFELITE300"},
+            {"name": "🚀 SMARTFREN 1 TAHUN", "price": 650000, "quota": "600GB (Setahun)", "duration": "365 Hari", "code": "SFYEARLY"}
         ],
         "🟠 AXIS": [
-            {"name": "🟠 AXIS 10GB 7 HARI", "price": 10000, "quota": "10GB - STOCK HABIS", "duration": "7 Hari", "code": "AX10GB"},
-            {"name": "🟠 AXIS 15GB 15 HARI", "price": 15000, "quota": "15GB - STOCK HABIS", "duration": "15 Hari", "code": "AX15GB"},
-            {"name": "🟠 AXIS 25GB 30 HARI", "price": 29000, "quota": "25GB", "duration": "30 Hari", "code": "AX25GB"}
+            {"name": "🔥 AXIS SUKA-SUKA 120GB", "price": 260000, "quota": "120GB", "duration": "60 Hari", "code": "AXSUKA120"},
+            {"name": "🔥 AXIS BRONET 250GB", "price": 480000, "quota": "250GB - STOCK HABIS", "duration": "90 Hari", "code": "AXBRO250"}
         ]
     };
 
