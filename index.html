@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tools Tembak Paket Data - Simulasi</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Tools Tembak Paket Data - MISRAN STORE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #2563eb;
@@ -16,6 +16,7 @@
             --border: #e2e8f0;
             --danger: #ef4444;
             --success: #22c55e;
+            --dana-blue: #118eea; /* Warna DANA */
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
@@ -35,6 +36,27 @@
 
         /* Container */
         .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+
+        /* --- INFO PEMBAYARAN BOX --- */
+        .payment-banner {
+            background: var(--dana-blue);
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(17, 142, 234, 0.3);
+            border: 2px solid rgba(255,255,255,0.2);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(17, 142, 234, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(17, 142, 234, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(17, 142, 234, 0); }
+        }
+        .payment-title { font-weight: 800; font-size: 1.1rem; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
+        .payment-number { font-size: 1.4rem; font-weight: 800; margin: 5px 0; font-family: monospace; letter-spacing: 1px; background: rgba(0,0,0,0.1); padding: 2px 10px; border-radius: 6px; display: inline-block;}
+        .payment-name { font-weight: 600; font-size: 0.95rem; opacity: 0.9; }
 
         /* Input Section */
         .input-section {
@@ -67,8 +89,8 @@
             gap: 10px;
             margin-bottom: 20px;
             padding-bottom: 5px;
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
         .tabs::-webkit-scrollbar { display: none; }
         
@@ -138,16 +160,8 @@
         .pkg-btn:hover { background: var(--primary-hover); }
         .pkg-btn:disabled { background: var(--text-light); cursor: not-allowed; }
 
-        /* Badge Stock Habis */
         .badge-habis {
-            background: var(--danger);
-            color: white;
-            font-size: 0.7rem;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-weight: bold;
-            display: inline-block;
-            margin-left: 5px;
+            background: var(--danger); color: white; font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; font-weight: bold; display: inline-block; margin-left: 5px;
         }
 
         /* Modal */
@@ -174,26 +188,32 @@
         .modal-body { margin-bottom: 20px; font-size: 0.95rem; color: var(--text-light); }
         
         .loader {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid var(--primary);
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
+            border: 4px solid #f3f3f3; border-top: 4px solid var(--primary); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 20px auto;
         }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        .otp-input {
-            width: 100%; padding: 10px; text-align: center; letter-spacing: 5px; font-size: 1.5rem;
-            border: 2px solid var(--border); border-radius: 8px; margin: 10px 0;
-        }
+        .otp-input { width: 100%; padding: 10px; text-align: center; letter-spacing: 5px; font-size: 1.5rem; border: 2px solid var(--border); border-radius: 8px; margin: 10px 0; }
 
         .btn-action { width: 100%; padding: 12px; border-radius: 8px; border: none; font-weight: 600; cursor: pointer; margin-top: 10px; }
         .btn-confirm { background: var(--primary); color: white; }
         .btn-cancel { background: white; border: 1px solid var(--border); color: var(--text); margin-top: 8px; }
         
         .success-icon { color: var(--success); font-size: 3rem; margin-bottom: 10px; }
+
+        /* Receipt Payment Box */
+        .receipt-payment {
+            margin-top: 15px;
+            border-top: 2px dashed #ccc;
+            padding-top: 15px;
+            text-align: center;
+        }
+        .receipt-payment-box {
+            background: var(--dana-blue);
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 5px;
+        }
     </style>
 </head>
 <body>
@@ -204,6 +224,13 @@
 </header>
 
 <div class="container">
+    <div class="payment-banner">
+        <div class="payment-title">💸 Metode Pembayaran</div>
+        <div style="margin-bottom: 5px;">Silakan Transfer ke <strong style="text-decoration: underline;">DANA</strong></div>
+        <div class="payment-number">0838-6125-1898</div>
+        <div class="payment-name">a.n MISRAN</div>
+    </div>
+
     <div class="input-section">
         <div class="form-group">
             <label for="phoneNumber">Nomor Tujuan (08... / +628...)</label>
@@ -214,10 +241,9 @@
 
     <div class="tabs" id="operatorTabs">
         <button class="tab-btn active" onclick="filterPackages('ALL')">Semua</button>
-        </div>
+    </div>
 
-    <div id="packageContainer" class="package-grid">
-        </div>
+    <div id="packageContainer" class="package-grid"></div>
 </div>
 
 <div id="loadingModal" class="modal-overlay">
@@ -253,23 +279,26 @@
 </div>
 
 <script>
-    // --- DATA ---
     const RAW_DATA = {
         "📱 TELKOMSEL": [
             {"name": "🔥 TELKOMSEL 10GB 7 HARI", "price": 15000, "quota": "10GB", "duration": "7 Hari", "code": "TS10GB"},
             {"name": "🔥 TELKOMSEL 15GB 15 HARI", "price": 20000, "quota": "15GB", "duration": "15 Hari", "code": "TS15GB"},
             {"name": "🔥 TELKOMSEL 25GB 30 HARI", "price": 35000, "quota": "25GB", "duration": "30 Hari", "code": "TS25GB"},
+            {"name": "🔥 TELKOMSEL 35GB 30 HARI", "price": 45000, "quota": "35GB", "duration": "30 Hari", "code": "TS35GB"},
+            {"name": "🔥 TELKOMSEL 50GB 30 HARI", "price": 60000, "quota": "50GB", "duration": "30 Hari", "code": "TS50GB"},
             {"name": "🔥 TELKOMSEL UNLIMITED 30 HARI", "price": 200000, "quota": "Unlimited FUP", "duration": "30 Hari", "code": "TSUNLIMITED"}
         ],
         "📡 INDOSAT": [
             {"name": "💜 INDOSAT 10GB 7 HARI", "price": 14000, "quota": "10GB", "duration": "7 Hari", "code": "IS10GB"},
+            {"name": "💜 INDOSAT 15GB 15 HARI", "price": 19000, "quota": "15GB", "duration": "15 Hari", "code": "IS15GB"},
             {"name": "💜 INDOSAT 25GB 30 HARI", "price": 33000, "quota": "25GB", "duration": "30 Hari", "code": "IS25GB"},
             {"name": "💜 INDOSAT 50GB 30 HARI", "price": 58000, "quota": "50GB", "duration": "30 Hari", "code": "IS50GB"}
         ],
         "🔵 XL": [
             {"name": "🔵 XL 10GB 7 HARI", "price": 13000, "quota": "10GB", "duration": "7 Hari", "code": "XL10GB"},
+            {"name": "🔵 XL 15GB 15 HARI", "price": 18000, "quota": "15GB", "duration": "15 Hari", "code": "XL15GB"},
             {"name": "🔵 XL 25GB 30 HARI", "price": 32000, "quota": "25GB", "duration": "30 Hari", "code": "XL25GB"},
-            {"name": "🔵 XL UNLIMITED 30 HARI", "price": 190000, "quota": "Unlimited FUP", "duration": "30 Hari", "code": "XLUNLIMITED"}
+            {"name": "🔵 XL 50GB 30 HARI", "price": 57000, "quota": "50GB", "duration": "30 Hari", "code": "XL50GB"}
         ],
         "🟢 THREE": [
             {"name": "🟢 THREE 10GB 7 HARI", "price": 12000, "quota": "10GB - STOCK HABIS", "duration": "7 Hari", "code": "3R10GB"},
@@ -278,24 +307,20 @@
         ],
         "🟣 SMARTFREN": [
             {"name": "🟣 SMARTFREN 10GB 7 HARI", "price": 11000, "quota": "10GB", "duration": "7 Hari", "code": "SF10GB"},
-            {"name": "🟣 SMARTFREN UNLIMITED 30 HARI", "price": 180000, "quota": "Unlimited FUP", "duration": "30 Hari", "code": "SFUNLIMITED"}
+            {"name": "🟣 SMARTFREN 15GB 15 HARI", "price": 16000, "quota": "15GB", "duration": "15 Hari", "code": "SF15GB"},
+            {"name": "🟣 SMARTFREN 25GB 30 HARI", "price": 30000, "quota": "25GB", "duration": "30 Hari", "code": "SF25GB"}
         ],
         "🟠 AXIS": [
+            {"name": "🟠 AXIS 10GB 7 HARI", "price": 10000, "quota": "10GB - STOCK HABIS", "duration": "7 Hari", "code": "AX10GB"},
             {"name": "🟠 AXIS 15GB 15 HARI", "price": 15000, "quota": "15GB - STOCK HABIS", "duration": "15 Hari", "code": "AX15GB"},
             {"name": "🟠 AXIS 25GB 30 HARI", "price": 29000, "quota": "25GB", "duration": "30 Hari", "code": "AX25GB"}
         ]
     };
 
-    // Full data dari script python asli (Saya singkat di atas agar kode tidak terlalu panjang, 
-    // tapi logika parsing di bawah akan menangani struktur yang sama persis).
-    // Jika Anda ingin data lengkap, paste data JSON string dari python ke variabel ini.
-
     let allPackages = [];
     let selectedPackage = null;
     let currentPhoneNumber = "";
 
-    // --- INITIALIZATION ---
-    
     function init() {
         parseData();
         renderTabs();
@@ -303,14 +328,11 @@
     }
 
     function parseData() {
-        // Flatten data logic seperti di Python
         for (const [key, items] of Object.entries(RAW_DATA)) {
             const operatorName = key.replace(/[^a-zA-Z\s]/g, '').trim().toUpperCase();
-            
             items.forEach(pkg => {
                 const isStockHabis = pkg.quota.toUpperCase().includes("STOCK HABIS");
                 const cleanQuota = pkg.quota.replace(" - STOCK HABIS", "");
-                
                 allPackages.push({
                     operator: operatorName,
                     name: pkg.name,
@@ -319,19 +341,15 @@
                     price: pkg.price,
                     priceFormatted: new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(pkg.price),
                     code: pkg.code,
-                    stock: !isStockHabis,
-                    originalKey: key // untuk keperluan sorting/grouping jika perlu
+                    stock: !isStockHabis
                 });
             });
         }
     }
 
-    // --- RENDERING UI ---
-
     function renderTabs() {
         const operators = [...new Set(allPackages.map(p => p.operator))];
         const tabContainer = document.getElementById('operatorTabs');
-        
         operators.forEach(op => {
             const btn = document.createElement('button');
             btn.className = 'tab-btn';
@@ -342,36 +360,25 @@
     }
 
     function filterPackages(operator) {
-        // Update active tab
         document.querySelectorAll('.tab-btn').forEach(btn => {
             btn.classList.toggle('active', btn.innerText === (operator === 'ALL' ? 'Semua' : operator));
         });
-
-        const filtered = operator === 'ALL' 
-            ? allPackages 
-            : allPackages.filter(p => p.operator === operator);
-        
+        const filtered = operator === 'ALL' ? allPackages : allPackages.filter(p => p.operator === operator);
         renderPackagesList(filtered);
     }
 
     function renderPackagesList(packages) {
         const container = document.getElementById('packageContainer');
         container.innerHTML = '';
-
         packages.forEach(pkg => {
             const card = document.createElement('div');
             card.className = `package-card ${!pkg.stock ? 'disabled' : ''}`;
-            
             const stockBadge = !pkg.stock ? '<span class="badge-habis">HABIS</span>' : '';
             const btnText = !pkg.stock ? 'Stok Habis' : 'Beli';
             const btnDisabled = !pkg.stock ? 'disabled' : '';
-
             card.innerHTML = `
                 <div>
-                    <div class="pkg-header">
-                        <span class="pkg-operator">${pkg.operator}</span>
-                        ${stockBadge}
-                    </div>
+                    <div class="pkg-header"><span class="pkg-operator">${pkg.operator}</span>${stockBadge}</div>
                     <div class="pkg-name">${pkg.name}</div>
                     <div class="pkg-details">
                         <div class="pkg-quota">${pkg.quota}</div>
@@ -387,80 +394,41 @@
         });
     }
 
-    // --- LOGIC TRANSAKSI ---
-
     function validatePhone(number) {
-        const regex = /^(?:\+62|0)8[1-9]\d{7,10}$/;
-        return regex.test(number);
+        return /^(?:\+62|0)8[1-9]\d{7,10}$/.test(number);
     }
 
     function initiatePurchase(code) {
         const phoneInput = document.getElementById('phoneNumber');
         const phoneError = document.getElementById('phoneError');
         const number = phoneInput.value.trim();
-
-        // Validasi Nomor
         if (!validatePhone(number)) {
-            phoneError.style.display = 'block';
-            phoneInput.focus();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            return;
+            phoneError.style.display = 'block'; phoneInput.focus(); window.scrollTo({ top: 0, behavior: 'smooth' }); return;
         }
         phoneError.style.display = 'none';
         currentPhoneNumber = number;
-
-        // Cari Paket
         selectedPackage = allPackages.find(p => p.code === code);
         if (!selectedPackage) return;
-
-        // Mulai Simulasi
         showModal('loadingModal');
         simulateProcess();
     }
 
     function simulateProcess() {
         const loadingText = document.getElementById('loadingText');
-        const steps = [
-            "Menghubungkan ke server operator...",
-            `Mengirim request ${selectedPackage.operator}...`,
-            "Memvalidasi nomor tujuan...",
-            "Menunggu respon gateway..."
-        ];
-
+        const steps = ["Menghubungkan ke server operator...", `Mengirim request ${selectedPackage.operator}...`, "Memvalidasi nomor tujuan...", "Menunggu respon gateway..."];
         let step = 0;
         const interval = setInterval(() => {
-            if (step < steps.length) {
-                loadingText.innerText = steps[step];
-                step++;
-            } else {
-                clearInterval(interval);
-                closeModal('loadingModal');
-                showModal('otpModal');
-                document.getElementById('otpInput').value = '';
-                document.getElementById('otpError').style.display = 'none';
-                document.getElementById('otpInput').focus();
-            }
-        }, 800); // delay per step
+            if (step < steps.length) { loadingText.innerText = steps[step]; step++; } 
+            else { clearInterval(interval); closeModal('loadingModal'); showModal('otpModal'); document.getElementById('otpInput').value = ''; document.getElementById('otpError').style.display = 'none'; document.getElementById('otpInput').focus(); }
+        }, 800);
     }
 
     function verifyOTP() {
         const input = document.getElementById('otpInput').value.trim();
-        const errorMsg = document.getElementById('otpError');
-        const VALID_OTP = "123456";
-
-        if (input === VALID_OTP) {
-            closeModal('otpModal');
-            showModal('loadingModal');
-            document.getElementById('loadingText').innerText = "Verifikasi OTP Berhasil. Mengaktifkan paket...";
-            
-            setTimeout(() => {
-                closeModal('loadingModal');
-                showSuccessReceipt();
-            }, 2000);
-        } else {
-            errorMsg.style.display = 'block';
-            document.getElementById('otpInput').value = '';
-        }
+        if (input === "123456") {
+            closeModal('otpModal'); showModal('loadingModal'); document.getElementById('loadingText').innerText = "Verifikasi OTP Berhasil. Mengaktifkan paket...";
+            setTimeout(() => { closeModal('loadingModal'); showSuccessReceipt(); }, 2000);
+        } else { document.getElementById('otpError').style.display = 'block'; document.getElementById('otpInput').value = ''; }
     }
 
     function showSuccessReceipt() {
@@ -473,39 +441,30 @@
                 <strong>Nomor</strong> <span>: ${currentPhoneNumber}</span>
                 <strong>Operator</strong> <span>: ${selectedPackage.operator}</span>
                 <strong>Paket</strong> <span>: ${selectedPackage.name}</span>
-                <strong>Kuota</strong> <span>: ${selectedPackage.quota}</span>
                 <strong>Harga</strong> <span style="color:var(--primary); font-weight:bold;">: ${selectedPackage.priceFormatted}</span>
                 <strong>Status</strong> <span style="color:var(--success); font-weight:bold;">: SUKSES</span>
             </div>
-            <div style="margin-top: 15px; font-size: 0.8rem; text-align: center; color: #64748b;">
-                Serial Number: ${Math.random().toString(36).substr(2, 9).toUpperCase()}
+            
+            <div class="receipt-payment">
+                <div style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 5px;">Silakan selesaikan pembayaran ke:</div>
+                <div class="receipt-payment-box">
+                    <div style="font-weight: bold; font-size: 1rem;">DANA</div>
+                    <div style="font-size: 1.3rem; font-weight: 800; letter-spacing: 2px; margin: 5px 0;">0838-6125-1898</div>
+                    <div style="font-size: 0.9rem;">a.n MISRAN</div>
+                </div>
+                <div style="font-size: 0.8rem; margin-top: 10px; color: var(--text-light);">
+                    Simpan bukti ini sebagai konfirmasi.
+                </div>
             </div>
         `;
         showModal('successModal');
     }
 
-    // --- MODAL UTILS ---
+    function showModal(id) { document.getElementById(id).style.display = 'flex'; }
+    function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+    window.onclick = function(event) { if (event.target.classList.contains('modal-overlay') && event.target.id !== 'loadingModal') event.target.style.display = 'none'; }
 
-    function showModal(id) {
-        document.getElementById(id).style.display = 'flex';
-    }
-
-    function closeModal(id) {
-        document.getElementById(id).style.display = 'none';
-    }
-
-    // Menutup modal jika klik di luar konten (kecuali loading)
-    window.onclick = function(event) {
-        if (event.target.classList.contains('modal-overlay')) {
-            if (event.target.id !== 'loadingModal') {
-                event.target.style.display = 'none';
-            }
-        }
-    }
-
-    // Start
     init();
-
 </script>
 
 </body>
