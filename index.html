@@ -3,443 +3,387 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tools Tembak Paket Data Premium - MISRAN STORE</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <title>WEBSITE STORE PANEL - Compact NIRIX Edition</title>
+    
     <style>
+        /* Mendefinisikan Warna Tema */
         :root {
-            --primary: #2563eb;
-            --primary-hover: #1d4ed8;
-            --bg: #f8fafc;
-            --card-bg: #ffffff;
-            --text: #1e293b;
-            --text-light: #64748b;
-            --border: #e2e8f0;
-            --danger: #ef4444;
-            --success: #22c55e;
-            --dana-blue: #118eea; /* Warna DANA */
+            --nirix-black: #110A1A;
+            --nirix-purple: #8A2BE2;
+            --nirix-light-purple: #B495E8;
+            --text-color: #f0f0f0;
+            --card-bg: rgba(30, 20, 40, 0.95);
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
-
-        body { background-color: var(--bg); color: var(--text); padding-bottom: 50px; }
-
-        /* Header */
-        header {
-            background: var(--primary);
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        /* PERBAIKAN: Mengaktifkan Scrolling pada Body */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--nirix-black);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            overflow-y: auto; /* Memungkinkan scrolling vertikal */
+            overflow-x: hidden;
+            min-height: 100vh; /* Memastikan body cukup tinggi untuk di-scroll jika konten banyak */
         }
-        header h1 { font-size: 1.5rem; margin-bottom: 5px; }
-        header p { font-size: 0.9rem; opacity: 0.9; }
 
-        /* Container */
-        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
-
-        /* --- INFO PEMBAYARAN BOX --- */
-        .payment-banner {
-            background: var(--dana-blue);
-            color: white;
-            padding: 15px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(17, 142, 234, 0.3);
-            border: 2px solid rgba(255,255,255,0.2);
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(17, 142, 234, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(17, 142, 234, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(17, 142, 234, 0); }
-        }
-        .payment-title { font-weight: 800; font-size: 1.1rem; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
-        .payment-number { font-size: 1.4rem; font-weight: 800; margin: 5px 0; font-family: monospace; letter-spacing: 1px; background: rgba(0,0,0,0.1); padding: 2px 10px; border-radius: 6px; display: inline-block;}
-        .payment-name { font-weight: 600; font-size: 0.95rem; opacity: 0.9; }
-
-        /* Input Section */
-        .input-section {
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-            position: sticky;
-            top: 10px;
-            z-index: 100;
-            border: 1px solid var(--border);
-        }
-        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; }
-        .form-group input {
+        /* --- BACKGROUND PARTICLE NETWORK --- */
+        #particle-background {
+            position: fixed; /* Tetap di layar */
+            top: 0;
+            left: 0;
             width: 100%;
-            padding: 12px;
-            border: 2px solid var(--border);
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.2s;
-        }
-        .form-group input:focus { outline: none; border-color: var(--primary); }
-        .error-msg { color: var(--danger); font-size: 0.85rem; margin-top: 5px; display: none; }
-
-        /* Filter Tabs */
-        .tabs {
-            display: flex;
-            overflow-x: auto;
-            gap: 10px;
-            margin-bottom: 20px;
-            padding-bottom: 5px;
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        .tabs::-webkit-scrollbar { display: none; }
-        
-        .tab-btn {
-            padding: 8px 16px;
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            cursor: pointer;
-            white-space: nowrap;
-            font-size: 0.9rem;
-            transition: all 0.2s;
-        }
-        .tab-btn.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
+            height: 100%;
+            z-index: -1; 
         }
 
-        /* Package Grid */
-        .package-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 15px;
+        #particle-background canvas {
+            display: block;
         }
+        /* ---------------------------------- */
 
-        .package-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
+        /* PERBAIKAN: Mengurangi Ukuran Container (Compact Size) */
+        .store-container {
+            max-width: 650px; /* Ukuran lebih kecil dari 850px */
+            margin: 40px auto;
+            background-color: var(--card-bg);
             border-radius: 12px;
-            padding: 15px;
-            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            padding: 25px; /* Padding dikurangi */
+            position: relative;
+            z-index: 1;
+        }
+        .product-card {
+            display: flex;
+            gap: 20px; /* Jarak antar kolom dikurangi */
+        }
+        .product-image {
+            width: 35%; /* Ukuran gambar dibuat lebih kecil */
+            max-width: 200px; /* Batasan maksimum gambar lebih kecil */
+            flex-shrink: 0;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid var(--nirix-purple);
+            box-shadow: 0 0 10px rgba(138, 43, 226, 0.4);
+        }
+        .product-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .product-details {
+            width: 65%;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
         }
-        .package-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            border-color: var(--primary);
+        .product-title {
+            font-size: 1.8em; /* Ukuran font judul dikurangi */
+            color: var(--nirix-light-purple);
+            margin-top: 0;
+            margin-bottom: 8px;
+            text-shadow: 0 0 4px rgba(138, 43, 226, 0.6);
         }
-        .package-card.disabled {
-            opacity: 0.6;
-            pointer-events: none;
-            background-color: #f1f5f9;
+        .platform-link {
+            font-size: 1em;
+            color: var(--text-color);
+            margin-bottom: 15px;
         }
-
-        .pkg-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
-        .pkg-name { font-weight: 700; font-size: 1rem; color: var(--text); line-height: 1.4; }
-        .pkg-operator { font-size: 0.75rem; background: #e0f2fe; color: #0369a1; padding: 2px 8px; rounded: 4px; border-radius: 4px; font-weight: 600; }
-        
-        .pkg-details { margin-bottom: 15px; }
-        .pkg-quota { font-size: 1.2rem; font-weight: 800; color: var(--primary); }
-        .pkg-duration { font-size: 0.9rem; color: var(--text-light); }
-        
-        .pkg-price-row { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 10px; }
-        .pkg-price { font-weight: 700; font-size: 1.1rem; }
-        .pkg-btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 8px 16px;
+        .price {
+            font-size: 2em; /* Ukuran font harga dikurangi */
+            color: var(--nirix-purple);
+            font-weight: bold;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--nirix-light-purple);
+            padding-bottom: 8px;
+        }
+        .payment-info {
+            background-color: rgba(138, 43, 226, 0.1);
+            border: 1px solid var(--nirix-purple);
+            padding: 12px; /* Padding dikurangi */
             border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
+            margin-bottom: 20px;
+            font-size: 0.9em; /* Ukuran font detail pembayaran lebih kecil */
         }
-        .pkg-btn:hover { background: var(--primary-hover); }
-        .pkg-btn:disabled { background: var(--text-light); cursor: not-allowed; }
-
-        .badge-habis {
-            background: var(--danger); color: white; font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; font-weight: bold; display: inline-block; margin-left: 5px;
+        .payment-info strong {
+            color: var(--nirix-light-purple);
+            font-weight: 700;
         }
-
-        /* Modal */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5);
-            display: none; justify-content: center; align-items: center;
-            z-index: 1000;
-            backdrop-filter: blur(2px);
-        }
-        .modal-content {
-            background: white;
-            padding: 25px;
-            border-radius: 16px;
-            width: 90%;
-            max-width: 400px;
-            text-align: center;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-            animation: popIn 0.3s ease;
-        }
-        @keyframes popIn { from {transform: scale(0.9); opacity: 0;} to {transform: scale(1); opacity: 1;} }
-
-        .modal-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
-        .modal-body { margin-bottom: 20px; font-size: 0.95rem; color: var(--text-light); }
         
-        .loader {
-            border: 4px solid #f3f3f3; border-top: 4px solid var(--primary); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 20px auto;
-        }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
-        .otp-input { width: 100%; padding: 10px; text-align: center; letter-spacing: 5px; font-size: 1.5rem; border: 2px solid var(--border); border-radius: 8px; margin: 10px 0; }
-
-        .btn-action { width: 100%; padding: 12px; border-radius: 8px; border: none; font-weight: 600; cursor: pointer; margin-top: 10px; }
-        .btn-confirm { background: var(--primary); color: white; }
-        .btn-cancel { background: white; border: 1px solid var(--border); color: var(--text); margin-top: 8px; }
-        
-        .success-icon { color: var(--success); font-size: 3rem; margin-bottom: 10px; }
-
-        /* Receipt Payment Box */
-        .receipt-payment {
-            margin-top: 15px;
-            border-top: 2px dashed #ccc;
+        /* Styling Form Upload */
+        .transfer-section {
             padding-top: 15px;
-            text-align: center;
+            border-top: 1px dashed var(--nirix-light-purple);
         }
-        .receipt-payment-box {
-            background: var(--dana-blue);
-            color: white;
-            padding: 10px;
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-control {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid var(--nirix-purple);
+            background-color: rgba(0, 0, 0, 0.3);
+            color: var(--text-color);
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 0.9em;
+        }
+        
+        .file-upload-box {
+            border: 2px dashed var(--nirix-purple);
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 15px; /* Padding dikurangi */
+            text-align: center;
+            cursor: pointer;
             border-radius: 8px;
-            margin-top: 5px;
+            font-size: 0.9em;
+        }
+        .btn-submit {
+            background-color: var(--nirix-purple);
+            color: var(--nirix-black); 
+            padding: 10px 20px; /* Padding tombol dikurangi */
+            font-size: 1em;
+            width: 100%;
+        }
+
+        /* Media Queries untuk tampilan responsif */
+        @media (max-width: 600px) {
+            .product-card {
+                flex-direction: column;
+                padding: 15px;
+            }
+            .product-image, .product-details {
+                width: 100%;
+                max-width: none;
+            }
+            .store-container {
+                margin: 20px auto;
+            }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>⚡ TEMBAK KUOTA / DOR KUOTA SEMUA OPERATOR</h1>
-    <p>🗣️ AUTO OTOMATIS TEMBAK / DOR KUOTA PAKET</p>
-</header>
-
-<div class="container">
-    <div class="payment-banner">
-        <div class="payment-title">🍃 NAXX - PANEL - STORE 🍃</div>
-        <div style="margin-bottom: 5px;">🤖 WEBSITE DI BUAT OLEH LUTPI RAMADHAN - SIMI OFFICIAL 🤖<strong style="text-decoration: underline;"></strong></div>
-        <div class="payment-number">💰 AYO DI BORONG SAMPE MOKAD 💰</div>
-        <div class="WELCOME">👤 WELCOME ADEK ADEK ABANG ! 👤</div>
+    <div id="particle-background">
+        <canvas id="particleCanvas"></canvas>
     </div>
 
-    <div class="input-section">
-        <div class="form-group">
-            <label for="phoneNumber">🗣️ : TULIS NOMOR SEBELUM BELI [08XXX / +628XXX ]</label>
-            <input type="tel" id="phoneNumber" placeholder="🔎 Tulis Disini" autocomplete="off">
-            <div id="phoneError" class="error-msg">❌ Format nomor tidak valid. Harus diawali 08 atau +628.</div>
-        </div>
-    </div>
-
-    <div class="tabs" id="operatorTabs">
-        <button class="tab-btn active" onclick="filterPackages('ALL')">Semua</button>
-    </div>
-
-    <div id="packageContainer" class="package-grid"></div>
-</div>
-
-<div id="loadingModal" class="modal-overlay">
-    <div class="modal-content">
-        <div class="loader"></div>
-        <div class="modal-title">Memproses Transaksi</div>
-        <div class="modal-body" id="loadingText">Menghubungkan ke operator...</div>
-    </div>
-</div>
-
-<div id="otpModal" class="modal-overlay">
-    <div class="modal-content">
-        <div class="modal-title">🔒 Verifikasi OTP</div>
-        <div class="modal-body">
-            Masukkan kode OTP yang dikirim ke nomor Anda.<br>
-            <small>(Kode Simulasi: <strong>123456</strong>)</small>
-        </div>
-        <input type="text" id="otpInput" class="otp-input" maxlength="6" placeholder="******">
-        <div id="otpError" class="error-msg" style="text-align: center;">❌ Kode OTP Salah!</div>
-        <button class="btn-action btn-confirm" onclick="verifyOTP()">Verifikasi</button>
-        <button class="btn-action btn-cancel" onclick="closeModal('otpModal')">Batal</button>
-    </div>
-</div>
-
-<div id="successModal" class="modal-overlay">
-    <div class="modal-content">
-        <div class="success-icon">🎉</div>
-        <div class="modal-title">Transaksi Berhasil!</div>
-        <div class="modal-body" id="receiptBody" style="text-align: left; background: #f8fafc; padding: 15px; border-radius: 8px; margin-top: 10px;">
+    <div class="store-container">
+        <div class="product-card">
+            
+            <div class="product-image">
+                <img src="https://files.catbox.moe/w6j8et.jpg" alt="WEBSITE STORE PANEL">
             </div>
-        <button class="btn-action btn-confirm" onclick="closeModal('successModal')">Tutup</button>
-    </div>
-</div>
 
-<script>
-    // DATA PAKET DIPERBARUI (HARGA 250K - 650K)
-    const RAW_DATA = {
-        "📱 TELKOMSEL": [
-            {"name": "👑 TSEL ORBIT 100GB", "price": 250000, "quota": "100GB", "duration": "30 Hari", "code": "TSORBIT100"},
-            {"name": "👑 TSEL SULTAN 150GB", "price": 180000, "quota": "150GB (All Net)", "duration": "30 Hari", "code": "TSSULTAN150"},
-            {"name": "👑 TSEL PRIORITY 250GB", "price": 130000, "quota": "250GB (VIP)", "duration": "60 Hari", "code": "TSPRIO250"},
-            {"name": "👑 TSEL UNLIMITED MAX", "price": 300000, "quota": "UNLIMITED NO FUP", "duration": "90 Hari", "code": "TSUNLI90"}
-        ],
-        "📡 INDOSAT": [
-            {"name": "💎 ISAT FREEDOM 100GB", "price": 250000, "quota": "100GB", "duration": "30 Hari", "code": "IS100GB"},
-            {"name": "💎 ISAT POSTPAID 200GB", "price": 400000, "quota": "200GB + Call", "duration": "30 Hari", "code": "IS200GB"},
-            {"name": "💎 ISAT SULTAN 350GB", "price": 220000, "quota": "350GB", "duration": "60 Hari", "code": "IS350GB"},
-            {"name": "💎 ISAT UNLIMITED JUMBO", "price": 180000, "quota": "UNLIMITED + ROAMING", "duration": "90 Hari", "code": "ISUNLI90"}
-        ],
-        "🔵 XL": [
-            {"name": "💠 XL AKRAB 150GB", "price": 280000, "quota": "150GB (Bisa Bagi)", "duration": "30 Hari", "code": "XLAKRAB150"},
-            {"name": "💠 XL PRIO GOLD 200GB", "price": 420000, "quota": "200GB", "duration": "30 Hari", "code": "XLPRIO200"},
-            {"name": "💠 XL PRIO PLATINUM", "price": 600000, "quota": "UNLIMITED DATA", "duration": "30 Hari", "code": "XLPRIOPLAT"}
-        ],
-        "🟢 THREE": [
-            {"name": "☘️ TRI HOME 120GB", "price": 250000, "quota": "120GB - STOCK HABIS", "duration": "30 Hari", "code": "TRHOME120"},
-            {"name": "☘️ TRI ELITE 200GB", "price": 380000, "quota": "200GB", "duration": "60 Hari", "code": "TRELITE200"},
-            {"name": "☘️ TRI UNLIMITED WORLD", "price": 350000, "quota": "UNLIMITED", "duration": "90 Hari", "code": "TRUNLI90"}
-        ],
-        "🟣 SMARTFREN": [
-            {"name": "🚀 SMARTFREN PRO 150GB", "price": 275000, "quota": "150GB", "duration": "30 Hari", "code": "SFPRO150"},
-            {"name": "🚀 SMARTFREN ELITE 300GB", "price": 170000, "quota": "300GB", "duration": "90 Hari", "code": "SFELITE300"},
-            {"name": "🚀 SMARTFREN 1 TAHUN", "price": 150000, "quota": "600GB (Setahun)", "duration": "365 Hari", "code": "SFYEARLY"}
-        ],
-        "🟠 AXIS": [
-            {"name": "🔥 AXIS SUKA-SUKA 120GB", "price": 260000, "quota": "120GB", "duration": "60 Hari", "code": "AXSUKA120"},
-            {"name": "🔥 AXIS BRONET 250GB", "price": 400000, "quota": "250GB - STOCK HABIS", "duration": "90 Hari", "code": "AXBRO250"}
-        ]
-    };
-
-    let allPackages = [];
-    let selectedPackage = null;
-    let currentPhoneNumber = "";
-
-    function init() {
-        parseData();
-        renderTabs();
-        renderPackages('ALL');
-    }
-
-    function parseData() {
-        for (const [key, items] of Object.entries(RAW_DATA)) {
-            const operatorName = key.replace(/[^a-zA-Z\s]/g, '').trim().toUpperCase();
-            items.forEach(pkg => {
-                const isStockHabis = pkg.quota.toUpperCase().includes("STOCK HABIS");
-                const cleanQuota = pkg.quota.replace(" - STOCK HABIS", "");
-                allPackages.push({
-                    operator: operatorName,
-                    name: pkg.name,
-                    quota: cleanQuota,
-                    duration: pkg.duration,
-                    price: pkg.price,
-                    priceFormatted: new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(pkg.price),
-                    code: pkg.code,
-                    stock: !isStockHabis
-                });
-            });
-        }
-    }
-
-    function renderTabs() {
-        const operators = [...new Set(allPackages.map(p => p.operator))];
-        const tabContainer = document.getElementById('operatorTabs');
-        operators.forEach(op => {
-            const btn = document.createElement('button');
-            btn.className = 'tab-btn';
-            btn.innerText = op;
-            btn.onclick = () => filterPackages(op);
-            tabContainer.appendChild(btn);
-        });
-    }
-
-    function filterPackages(operator) {
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.classList.toggle('active', btn.innerText === (operator === 'ALL' ? 'Semua' : operator));
-        });
-        const filtered = operator === 'ALL' ? allPackages : allPackages.filter(p => p.operator === operator);
-        renderPackagesList(filtered);
-    }
-
-    function renderPackagesList(packages) {
-        const container = document.getElementById('packageContainer');
-        container.innerHTML = '';
-        packages.forEach(pkg => {
-            const card = document.createElement('div');
-            card.className = `package-card ${!pkg.stock ? 'disabled' : ''}`;
-            const stockBadge = !pkg.stock ? '<span class="badge-habis">HABIS</span>' : '';
-            const btnText = !pkg.stock ? 'Stok Habis' : 'Beli';
-            const btnDisabled = !pkg.stock ? 'disabled' : '';
-            card.innerHTML = `
-                <div>
-                    <div class="pkg-header"><span class="pkg-operator">${pkg.operator}</span>${stockBadge}</div>
-                    <div class="pkg-name">${pkg.name}</div>
-                    <div class="pkg-details">
-                        <div class="pkg-quota">${pkg.quota}</div>
-                        <div class="pkg-duration">Masa Aktif: ${pkg.duration}</div>
-                    </div>
+            <div class="product-details">
+                <h1 class="product-title">SUCCES HACKER</h1>
+                <p class="platform-link">JENIS HACKER: FACEBOOK</p>
+                <div class="price">
+                    Rp 600.000
                 </div>
-                <div class="pkg-price-row">
-                    <div class="pkg-price">${pkg.priceFormatted}</div>
-                    <button class="pkg-btn" ${btnDisabled} onclick="initiatePurchase('${pkg.code}')">${btnText}</button>
+
+                <div class="payment-info">
+                    <p>
+                        DETAIL TRANSFER DANA:
+                    </p>
+                    <p>
+                        Nomor DANA: 0838-6125-1898
+                        <br>
+                        Atas Nama: MISRAN
+                    </p>
                 </div>
-            `;
-            container.appendChild(card);
-        });
-    }
+                
+                <div class="transfer-section">
+                    <h2>Konfirmasi & Kirim Bukti Transfer</h2>
+                    
+                    <form id="transferForm" enctype="multipart/form-data">
+                        
+                        <div class="form-group">
+                            <label for="username">Nama/Username Anda (Verifikasi)</label>
+                            <input type="text" id="username" name="username" class="form-control" placeholder="Cth: Username Facebook Anda" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="proofFile">Upload File Hasil Transaksi Transfer (Otomatis ke Telegram):</label>
+                            <div class="file-upload-box" id="uploadBox" onclick="document.getElementById('proofFile').click();">
+                                <span id="uploadText">KLIK UNTUK UPLOAD BUKTI TRANSFER</span>
+                                <input type="file" id="proofFile" name="proofFile" accept="image/*,.pdf" required>
+                            </div>
+                            <p id="fileNameDisplay"></p>
+                        </div>
+                        
+                        <button type="submit" class="btn-submit">Kirim Bukti ke Telegram</button>
+                    </form>
 
-    function validatePhone(number) {
-        return /^(?:\+62|0)8[1-9]\d{7,10}$/.test(number);
-    }
+                    <div id="responseMessage" style="margin-top: 20px;"></div>
+                </div>
+            </div>
+        </div>
 
-    function initiatePurchase(code) {
-        const phoneInput = document.getElementById('phoneNumber');
-        const phoneError = document.getElementById('phoneError');
-        const number = phoneInput.value.trim();
-        if (!validatePhone(number)) {
-            phoneError.style.display = 'block'; phoneInput.focus(); window.scrollTo({ top: 0, behavior: 'smooth' }); return;
-        }
-        phoneError.style.display = 'none';
-        currentPhoneNumber = number;
-        selectedPackage = allPackages.find(p => p.code === code);
-        if (!selectedPackage) return;
-        showModal('loadingModal');
-        simulateProcess();
-    }
-
-    function simulateProcess() {
-        const loadingText = document.getElementById('loadingText');
-        const steps = ["Menghubungkan ke server operator...", `Mengirim request ${selectedPackage.operator}...`, "Memvalidasi nomor tujuan...", "Menunggu respon gateway..."];
-        let step = 0;
-        const interval = setInterval(() => {
-            if (step < steps.length) { loadingText.innerText = steps[step]; step++; } 
-            else { clearInterval(interval); closeModal('loadingModal'); showModal('otpModal'); document.getElementById('otpInput').value = ''; document.getElementById('otpError').style.display = 'none'; document.getElementById('otpInput').focus(); }
-        }, 800);
-    }
-
-    function verifyOTP() {
-        const input = document.getElementById('otpInput').value.trim();
-        if (input === "123456") {
-            closeModal('otpModal'); showModal('loadingModal'); document.getElementById('loadingText').innerText = "Verifikasi OTP Berhasil. Mengaktifkan paket...";
-            setTimeout(() => { closeModal('loadingModal'); showSuccessReceipt(); }, 2000);
-        } else { document.getElementById('otpError').style.display = 'block'; document.getElementById('otpInput').value = ''; }
-    }
-
-    function showSuccessReceipt() {
-        const receiptDiv = document.getElementById('receiptBody');
-        const now = new Date().toLocaleString('id-ID');
+        <div style="margin-top: 40px; padding: 20px; background-color: rgba(0, 0, 0, 0.4); border-radius: 8px;">
+            <h3 style="color: var(--nirix-purple);">Tentang Website Store Panel Ini</h3>
+            <p style="color: var(--text-color);">
+                Panel toko ini memungkinkan Anda untuk mengelola inventaris, pesanan, dan transaksi. Dapatkan akses penuh setelah pembayaran dikonfirmasi melalui Telegram. Pastikan bukti transfer yang Anda unggah jelas dan mencantumkan waktu transaksi. Terima kasih telah memilih layanan kami!
+            </p>
+            <p style="color: var(--text-color);">
+                *Latar belakang particle network akan tetap bergerak di belakang saat Anda melakukan scrolling.*
+            </p>
+        </div>
         
-        receiptDiv.innerHTML = `
-            <div style="display:grid; grid-template-columns: 100px 1fr; gap: 8px; font-size: 0.9rem;">
-                <strong>Waktu</strong> <span>: ${now}</span>
-                <strong>Nomor</strong> <span>: ${currentPhoneNumber}</span>
-                <strong>Operator</strong> <span>: ${selectedPackage.operator}</span>
-                <strong>Paket</strong> <span>: ${selectedPackage.name}</span>
-                <strong>Harga</strong> <span style="color:var(--primary); font-weight:bold;">: ${selectedPackage.priceFormatted}</span>
-                <strong>Status</strong> <span style="color:var(--success); font-weight:bold;">: SUKSES</span>
+        <div style="height: 300px;"></div>
+    </div>
+
+    <script>
+        // TARGET TELEGRAM yang Anda minta:
+        const TELEGRAM_TARGET = "https://t.me/NAXLRUNTOOLS";
+
+        // Variabel Warna dari CSS :root
+        const PARTICLE_COLOR = '#8A2BE2'; // Ungu cerah
+        const LINE_COLOR = '#B495E8';    // Ungu muda
+        
+        // --- LOGIKA PARTICLE NETWORK ---
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        const numParticles = 80;
+        const maxDistance = 120; 
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 0.4 - 0.2;
+                this.speedY = Math.random() * 0.4 - 0.2;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x > canvas.width || this.x < 0) {
+                    this.speedX *= -1;
+                }
+                if (this.y > canvas.height || this.y < 0) {
+                    this.speedY *= -1;
+                }
+            }
+
+            draw() {
+                ctx.fillStyle = PARTICLE_COLOR;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < numParticles; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function connectParticles() {
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < maxDistance) {
+                        const opacity = 1 - (distance / maxDistance);
+
+                        ctx.strokeStyle = LINE_COLOR;
+                        ctx.lineWidth = 0.5;
+                        ctx.globalAlpha = opacity * 0.4; 
+
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                        
+                        ctx.globalAlpha = 1;
+                    }
+                }
+            }
+        }
+
+        function animateParticles() {
+            requestAnimationFrame(animateParticles);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            connectParticles();
+
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+            }
+        }
+
+        initParticles();
+        animateParticles();
+        
+        // --- LOGIKA FORM UPLOAD ---
+
+        // Fungsi untuk memperbarui tampilan nama file yang dipilih
+        document.getElementById('proofFile').addEventListener('change', function() {
+            const fileInput = this;
+            const fileNameDisplay = document.getElementById('fileNameDisplay');
+            const uploadText = document.getElementById('uploadText');
+
+            if (fileInput.files.length > 0) {
+                fileNameDisplay.innerHTML = `File Terpilih: ${fileInput.files[0].name} (Siap Kirim)`;
+                uploadText.textContent = 'Ganti file?';
+            } else {
+                fileNameDisplay.textContent = '';
+                uploadText.textContent = 'KLIK UNTUK UPLOAD BUKTI TRANSFER';
+            }
+        });
+
+        // Fungsi untuk menangani pengiriman formulir
+        document.getElementById('transferForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const proofFile = document.getElementById('proofFile').files[0];
+            const responseMessage = document.getElementById('responseMessage');
+
+            if (!username.trim() || !proofFile) {
+                responseMessage.innerHTML = '❌ Error: Mohon isi username dan upload bukti transfer.';
+                responseMessage.style.color = 'red';
+                return;
+            }
+
+            responseMessage.innerHTML = '⏳ Memproses Pengiriman... Harap tunggu.';
+            responseMessage.style.color = 'orange';
+
+            // SIMULASI PENGIRIMAN DATA
+            
+            setTimeout(() => {
+                // Simulasi Sukses
+                responseMessage.innerHTML = `
+                    ✅ Sukses! Bukti transfer Anda sudah terkirim ke jalur verifikasi. 
+                    <br>
+                    Data (Nama: ${username}, File: ${proofFile.name}) dialihkan ke Telegram: 
+                    <a href="${TELEGRAM_TARGET}" target="_blank">${TELEGRAM_TARGET}</a>.
+                    <br>
+                    Mohon segera hubungi Admin di Telegram untuk konfirmasi cepat.
+                `;
+                responseMessage.style.color = 'var(--nirix-purple)';
+                document.getElementById('transferForm').reset();
+            }, 3000); 
+        });
+    </script>
+</body>
+</html>
+ SUKSES</span>
             </div>
             
             <div class="receipt-payment">
